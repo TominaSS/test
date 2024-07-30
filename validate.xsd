@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ProdejeAut">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Auto" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+			  <xs:element name="Model">
+			    <xs:simpleType>
+				  <xs:restriction base="xs:string">
+				    <!-- not empty and not just whitespace -->
+					<xs:minLength value="1"/>
+					<xs:pattern value="\S+.*"/>
+				  </xs:restriction>
+				</xs:simpleType>
+			  </xs:element>
+			  <xs:element name="DatumProdeje">
+				<xs:simpleType>
+				  <xs:restriction base="xs:string">
+					  <!-- Regex to match DD.MM.YYYY format -->
+					  <xs:pattern value="\d{2}\.\d{2}\.\d{4}"/>
+				  </xs:restriction>
+				</xs:simpleType>
+			  </xs:element>
+			  <xs:element name="Cena">
+				<xs:simpleType>
+				  <xs:restriction base="xs:double">
+					<!-- positive double value -->
+					<xs:minExclusive value="0.0"/>
+				  </xs:restriction>
+				</xs:simpleType>
+			  </xs:element>
+              <xs:element name="DPH" type="xs:double"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
